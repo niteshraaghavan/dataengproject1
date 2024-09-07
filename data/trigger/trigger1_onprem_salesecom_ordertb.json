@@ -1,0 +1,24 @@
+{
+	"name": "trigger1_onprem_salesecom_ordertb",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_SQL_TO_PARQUET",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-09-07T10:00:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
