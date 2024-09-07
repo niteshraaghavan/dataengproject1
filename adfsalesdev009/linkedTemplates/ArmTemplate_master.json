@@ -1,0 +1,105 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfsalesdev009"
+		},
+		"AzureDataLakeStorage_aslssi_dev_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_aslssi_dev'"
+		},
+		"ls_adlssistg_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_adlssistg'"
+		},
+		"ls_blobstgdev_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_blobstgdev'"
+		},
+		"ls_edfnsqldev_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_edfnsqldev'"
+		},
+		"ls_salessqlsdev_on_prem_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_salessqlsdev_on_prem'"
+		},
+		"AzureDataLakeStorage_aslssi_dev_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsrawsidata0009.dfs.core.windows.net/"
+		},
+		"ls_edfnsqldev_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "edfnsqlserverdev1991.database.windows.net"
+		},
+		"ls_edfnsqldev_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "edfnsqldev "
+		},
+		"ls_edfnsqldev_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin123"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adfsalesdev009_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage_aslssi_dev_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage_aslssi_dev_accountKey')]"
+					},
+					"ls_adlssistg_connectionString": {
+						"value": "[parameters('ls_adlssistg_connectionString')]"
+					},
+					"ls_blobstgdev_connectionString": {
+						"value": "[parameters('ls_blobstgdev_connectionString')]"
+					},
+					"ls_edfnsqldev_password": {
+						"value": "[parameters('ls_edfnsqldev_password')]"
+					},
+					"ls_salessqlsdev_on_prem_connectionString": {
+						"value": "[parameters('ls_salessqlsdev_on_prem_connectionString')]"
+					},
+					"AzureDataLakeStorage_aslssi_dev_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage_aslssi_dev_properties_typeProperties_url')]"
+					},
+					"ls_edfnsqldev_properties_typeProperties_server": {
+						"value": "[parameters('ls_edfnsqldev_properties_typeProperties_server')]"
+					},
+					"ls_edfnsqldev_properties_typeProperties_database": {
+						"value": "[parameters('ls_edfnsqldev_properties_typeProperties_database')]"
+					},
+					"ls_edfnsqldev_properties_typeProperties_userName": {
+						"value": "[parameters('ls_edfnsqldev_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
